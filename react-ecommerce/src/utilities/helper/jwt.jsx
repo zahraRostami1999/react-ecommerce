@@ -3,11 +3,11 @@ import { SignJWT, jwtVerify } from 'jose';
 const key = new TextEncoder().encode("123456789");
 
 export const encryptJWT = async (Payload) => {
-    return await SignJWT(Payload)
+    return await new SignJWT(Payload)
         .setProtectedHeader({ alg: "HS256" })
-        .setIssaudeAt()
+        .setIssuedAt()
         .setExpirationTime("1day")
-        .setsign(key)
+        .sign(key)
 }
 
 export const decryptJWT = async (sesion) => {
