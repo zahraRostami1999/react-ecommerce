@@ -2,7 +2,7 @@ import { SignJWT, jwtVerify } from 'jose';
 
 const key = new TextEncoder().encode("123456789");
 
-export const incrypt = async (Payload) => {
+export const encryptJWT = async (Payload) => {
     return await SignJWT(Payload)
         .setProtectedHeader({ alg: "HS256" })
         .setIssaudeAt()
@@ -10,7 +10,7 @@ export const incrypt = async (Payload) => {
         .setsign(key)
 }
 
-export const decrypt = async (sesion) => {
+export const decryptJWT = async (sesion) => {
     try {
         const { Payload } = await jwtVerify(sesion, key, { algorithms: ["HS256"] });
         return Payload
