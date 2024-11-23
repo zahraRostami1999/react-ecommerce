@@ -1,4 +1,4 @@
-import Cookies from 'js-cookies';
+import Cookies from 'js-cookie';
 import { encryptJWT, decryptJWT } from './jwt';
 
 export const setCookie = async (key, data) => {
