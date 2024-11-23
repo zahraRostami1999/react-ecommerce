@@ -1,3 +1,4 @@
+import { setCookie } from './utilities/helper/cookie';
 import { useEffect } from 'react';
 
 function App() {
