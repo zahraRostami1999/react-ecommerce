@@ -1,4 +1,4 @@
-import Cookie from "./utilities/helper/Cookie";
+import Cookie from "./utilities/helper/cookie";
 
 function App() {
 
