@@ -4,21 +4,33 @@ import { useCookies } from 'react-cookie';
 
 
 function Cookie() {
-    const [username, setUsername] = useState("");
-    const [cookies, setCookie, removeCookie] = useCookies(["username"]);
+    const userInfo = {
+        username: "",
+        password: ""
+    }
+    const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
 
-    const handleChange = (e) => {
-        setUsername(e.target.value);
+    const handleUsernameChange = (e) => {
+        const value = e.target.value;
+        userInfo.username = value;
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        userInfo.password = value;
     }
 
     const handleSetCookie = () => {
-        setCookie("username", username, { path: "/" })
-        alert("Cookies has been set")
+        setCookie("userInfo", userInfo, { path: "/" })
+        alert("You logged in successfully")
     }
 
     const handleRemoveCookie = () => {
         removeCookie("username");
-        alert("Cookies has been removed")
+        removeCookie("password");
+        userInfo.username = "";
+        userInfo.password = "";
+        alert("You logged out successfully")
     }
 
     return (
@@ -26,14 +38,16 @@ function Cookie() {
             <div className='bg-red-500 w-96 h-96'>
                 <div>
                     <label htmlFor="userName">Username:</label>
-                    <input className='text-orange-800' name='userName' type="text" onChange={(e) => handleChange(e)} />
+                    <input className='text-orange-800' name='userName' type="text" onChange={(e) => handleUsernameChange(e)} />
+                    <label htmlFor="userName">Password:</label>
+                    <input className='text-orange-800' name='userName' type="password" onChange={(e) => handlePasswordChange(e)} />
                 </div>
                 <div>
                     <p>
-                        {cookies.username ? cookies.username : "No Cookie Set"}
+                        {cookies.username ? "You're already logged in!" : "You are not logged!"}
                     </p>
-                    <button onClick={() => handleSetCookie()}>Set Cookie</button>
-                    <button onClick={() => handleRemoveCookie()}>Remove Cookie</button>
+                    <button onClick={() => handleSetCookie()}>Login</button>
+                    <button onClick={() => handleRemoveCookie()}>Logout</button>
                 </div>
             </div>
 
