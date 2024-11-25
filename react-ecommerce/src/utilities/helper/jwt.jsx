@@ -1,21 +1,22 @@
-import { SignJWT, jwtVerify } from 'jose';
+import jwt from 'jsonwebtoken';
 
-const key = new TextEncoder().encode("123456789");
+const secretKey = "lkcvnksdnvjnfvf";
 
-export const encryptJWT = async (Payload) => {
-    return await new SignJWT(Payload)
-        .setProtectedHeader({ alg: "HS256" })
-        .setIssuedAt()
-        .setExpirationTime("1day")
-        .sign(key)
-}
-
-export const decryptJWT = async (sesion) => {
+const encoderJWT = (data, cookieName) => {
     try {
-        const { Payload } = await jwtVerify(sesion, key, { algorithms: ["HS256"] });
-        return Payload
+        const token = jwt.sign(data, secretKey, { expiresIn: "1h" });
+        return token;
     }
     catch (error) {
-        return null;
+        console.error("Error creating JWT token:", error);
+    }
+}
+
+const decoderJWT = (cookieName) => {
+    try{
+        const decodeedData = jwt.verify(cookieName, )
+    }
+    catch (error) {
+        console.error("Error decoding JWT token:", error);
     }
 }
