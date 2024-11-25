@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 
-
-
 function Cookie() {
     const [userInfo, setUserInfo] = useState({
         username: "",
@@ -12,22 +10,21 @@ function Cookie() {
 
     const handleUsernameChange = (e) => {
         const value = e.target.value;
-        userInfo.username = value;
+        setUserInfo((prev) => ({ ...prev, username: value }))
     }
 
     const handlePasswordChange = (e) => {
         const value = e.target.value;
-        userInfo.password = value;
+        setUserInfo((prev) => ({ ...prev, password: value }))
     }
 
     const handleSetCookie = () => {
-        setCookie("userInfo", userInfo, { path: "/" })
-        alert("You logged in successfully")
+        setCookie("userInfo", userInfo, { path: "/" });
+        alert("You logged in successfully");
     }
 
     const handleRemoveCookie = () => {
-        removeCookie("username");
-        removeCookie("password");
+        removeCookie("userInfo");
         userInfo.username = "";
         userInfo.password = "";
         alert("You logged out successfully")
