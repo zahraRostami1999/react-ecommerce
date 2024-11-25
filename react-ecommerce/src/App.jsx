@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-red-700">This is App page.</h1>
+      <h1>This is App page</h1>
       <Cookie />
     </>
   )
